@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ID, Query } from "appwrite";
 import { INewPost, INewUser, IUpdatePost, IUpdateUser } from "@/types";
 import { account, appwriteConfig, avatars, databases, storage } from "./config";
@@ -227,7 +228,8 @@ export async function deleteSavedPost(savedRecordId: string) {
       console.log(error);
     }
 }
-export async function getPostById(postId: string){
+export async function getPostById(postId?: string){
+    if (!postId) throw Error;
     try{
         const post = await databases.getDocument(
             appwriteConfig.databaseId,
@@ -287,7 +289,7 @@ export async function updatePost(post: IUpdatePost){
     }
 }
 
-export async function deletePost(postId: string, imageId: string) {
+export async function deletePost(postId?: string, imageId?: string) {
     if(!postId || !imageId) throw Error;
     try{
         await databases.deleteDocument(
@@ -424,6 +426,24 @@ export async function updateUser(user: IUpdateUser) {
       }
   
       return updatedUser;
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+export async function getUserPosts(userId?: string) {
+    if (!userId) return;
+  
+    try {
+      const post = await databases.listDocuments(
+        appwriteConfig.databaseId,
+        appwriteConfig.postCollectionId,
+        [Query.equal("creator", userId), Query.orderDesc("$createdAt")]
+      );
+  
+      if (!post) throw Error;
+  
+      return post;
     } catch (error) {
       console.log(error);
     }
