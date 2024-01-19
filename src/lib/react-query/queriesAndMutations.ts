@@ -228,3 +228,4 @@ export const useGetUserPosts = (userId?: string) => {
     enabled: !!userId,
   });
 };
+
