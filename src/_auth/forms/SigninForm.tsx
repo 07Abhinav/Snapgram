@@ -22,11 +22,16 @@ import { useUserContext } from "@/context/AuthContext"
 const SigninForm = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
+<<<<<<< HEAD
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
 
   // Query
   const { mutateAsync: signInAccount, isPending } = useSignInAccount();
 
+=======
+  const {mutateAsync: signInAccount } = useSignInAccount();
+  // 1. Define your form.
+>>>>>>> 85154c0b74967100c803242ad1b2928a9cd5a798
   const form = useForm<z.infer<typeof SigninValidation>>({
     resolver: zodResolver(SigninValidation),
     defaultValues: {

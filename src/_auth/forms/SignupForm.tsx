@@ -39,6 +39,7 @@ const SignupForm = () => {
 
       if (!newUser) {
         toast({ title: "Sign up failed. Please try again.", });
+        toast({ title: "Sign up failed. Please try again.", }); 
         
         return;
       }

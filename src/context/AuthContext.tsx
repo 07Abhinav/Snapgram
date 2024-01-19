@@ -85,6 +85,12 @@ export function AuthProvider({children}: {children: React.ReactNode}) {
   
 }
 
+<<<<<<< HEAD
 // export default AuthProvider;
 // eslint-disable-next-line react-refresh/only-export-components
 export const useUserContext = () => useContext(AuthContext);
+=======
+export default AuthProvider;
+// eslint-disable-next-line react-refresh/only-export-components
+export const useUserContext = () => useContext(AuthContext);
+>>>>>>> 85154c0b74967100c803242ad1b2928a9cd5a798
